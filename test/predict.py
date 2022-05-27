@@ -136,5 +136,5 @@ if __name__ == "__main__":
     assert kss is kss1
 
     # make a prediction
-    keyword = kss.predict("./content/dataset/Greeting/Hello2.wav")
+    keyword = kss.predict("Egg_Song1.wav")
     print(keyword)
