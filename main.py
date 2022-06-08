@@ -8,8 +8,9 @@ import librosa
 import numpy as np
 from PIL import Image
 
-from flask import Flask, request, jsonify 
+from flask import Flask, render_template, request, jsonify, redirect
 
+import os
 
 SAVED_MODEL_PATH = "test/model.h5"
 SAMPLES_TO_CONSIDER = 22050
@@ -116,25 +117,33 @@ def Keyword_Spotting_Service():
 
 app = Flask(__name__)
 
+app.config["AUDIO_UPLOADS"] = 'C:/Users/user/Documents/Pipelines/Projects/Bangkit/Capstone/Animal-Welfare-ML-Model/static/img/uploads'
+
 @app.route("/", methods=["GET", "POST"])
 def index():
     if request.method == "POST":
-        # file = request.files.get('file')
-        # if file is None or file.filename == "":
-        #     return jsonfiy({"error": "no file"})
 
-        try:
-            kss = Keyword_Spotting_Service()
-            kss1 = Keyword_Spotting_Service()
+        if request.files:
+            audio = request.files["audio"]
+            audio_path = os.path.join(app.config["AUDIO_UPLOADS"], audio.filename)
+            audio.save(audio_path)
 
-            assert kss is kss1
+            print("Audio saved") 
 
-            keyword = kss.predict('./test/content/dataset/Happy/Egg_Song1.wav')
-            return jsonify(keyword)
-        except Exception as e:
-            return jsonify({"error": str(e)})
+            try:
+                kss = Keyword_Spotting_Service()
+                kss1 = Keyword_Spotting_Service()
 
-    return "OK"
+                assert kss is kss1
+                prediction = kss.predict(audio_path)
+            except Exception as e:
+                print(str(e))
+                return jsonify({"error": "Failed to predict"}), 500            
+        
+        # id = request.json["id"]
+        return jsonify({"prediction": prediction}), 200
+
+    return render_template("/public/upload_audio.html")
 
 if __name__ == "__main__":
     app.run(debug=True)
