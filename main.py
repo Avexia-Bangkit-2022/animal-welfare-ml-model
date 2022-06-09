@@ -1,16 +1,15 @@
+from distutils.command.upload import upload
 import os
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
-import io
+# from google.cloud import storage
+
 import tensorflow as tf
 from tensorflow import keras
 import librosa
 import numpy as np
-from PIL import Image
 
 from flask import Flask, render_template, request, jsonify, redirect
-
-import os
 
 SAVED_MODEL_PATH = "model.h5"
 SAMPLES_TO_CONSIDER = 22050
@@ -115,12 +114,18 @@ def Keyword_Spotting_Service():
         _Keyword_Spotting_Service.model = tf.keras.models.load_model(SAVED_MODEL_PATH)
     return _Keyword_Spotting_Service._instance
 
+
+
 app = Flask(__name__)
 
-app.config["AUDIO_UPLOADS"] = 'C:/Users/user/Documents/Pipelines/Projects/Bangkit/Capstone/Animal-Welfare-ML-Model/static/img/uploads'
+app.config["AUDIO_UPLOADS"] = os.getcwd() + "\\audio"
 
-@app.route("/", methods=["GET", "POST"])
+@app.route("/")
 def index():
+    return "Ok", 200
+
+@app.route("/predict", methods=["GET", "POST"])
+def predict():
     if request.method == "POST":
 
         if request.files:
@@ -140,7 +145,6 @@ def index():
                 print(str(e))
                 return jsonify({"error": "Failed to predict"}), 500            
         
-        # id = request.json["id"]
         return jsonify({"prediction": prediction}), 200
 
     return render_template("/public/upload_audio.html")

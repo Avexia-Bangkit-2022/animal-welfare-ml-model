@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "avexia-project",
+  "private_key_id": "c09812919b68e4894e3ce2f100da46e0c49b6ac7",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQC/N2Xf4Eri+aUD\nwDeBmtpWGmF7b8rs29U9erQGGP/OwbEKg6TWKOLpBgc6KZSbAkhBNs1PKbVDgfs3\nr05/LEvgFo1IZCiuS6B5KBr9ESdLgV3Pl1eEzBqtm0n9FbAxYM5g0ZY4mhMM+kiB\nE0Y6yv35W4z1epkcnARi9DuVzgxkta1X+XHcLVnzrjWx9ppcqR1AeD6ZRF6Ud18d\nEYjdcRZ3jgdTPl2hnMmDFB21NQhzzp/OLM2Blt2NY8VFad9WdR9W7JbbYTKvHWON\n6zj++XClHqH80NS9bBYKb2Ut0h710gUrX7kvF8OMGoIQOo1HgQYaFKzNKdVAzXwq\nEHiqwnERAgMBAAECggEAK6EuyAXL4H04xyHRKGvWXKYZTwpjgWbpgWUhdXC30YvF\nYxJFhq3+lE/RT1aUd0fuh57C+siX+ObMFNkVrpPDXkaXBwj/dUGBRJO/kLWcwzAp\n4Qd1qzHM9obDu5D6ylF91X6M6a5SIXhsGbN1p02Q5JgckhhenjYFFDUI8XX5wvKB\npfLCaHAojR+ptdkg4N8Icjv6oYRzgMRg3f+7W0S3/QYctrp8o1yfMHycos8DjkmL\nmGEPpCud+M2EwMKv/OXipLt54POgPzaNsxAllWinsW+xK90pmU82DajC9ysk+HNP\n9RvCfIcW2uYjFmUi8cYNC2I/1pgAKmpGJo0w09Y37wKBgQD2UxPuUDbZKddhBbtT\nE1lSFAsm9t6Gx8+tI9RVB1PRVnnUx+oN7CSa1AGBEmu+NuBTebpw73nczACXrgB9\nbGCWIqnzsN5np4zaDWJDuZObire+j1KtDKku0Bwa9gHhHiqTHFh/IW2Zc8JhxjP7\n88nvIWXFLweJzjPCw3PQi4n1swKBgQDGui3UgKmpTCalU/TV3jzhJGPDreI+QeA9\nSZ1S39zcdqrUdyiquFDBNbkMP9cXQBISZeFojyWr8hN8GQjmYqx/pAh0O8jejH6F\nJKONFFQaa1z1BGxZ5QOXruWVobSox3rKT/N8cFVApop5uw4NP/ElWDTR8mIJHmGH\nDf6MqVMkKwKBgQCBrnVUxuhJZmzcyI65ivtAagsBBYFcBgABEFbuOQBYuqVDb8h6\ncfNHjAwKru8IYo2xhOmyIXHP25sIP/REE/W5tSAyitBcU+qktd0g+KeMgPiBm6UU\nNBEx8yCI1TFiGmahso+oxqmT20zf+uBNaijK+5M/v6XBWE0J4aqshXopXwKBgHLy\nthe45Go81g3DZlde2TARcHN7XOZODHrm3c1WF9ad/WowEqHNQ0i+3m6rbqrQMKPb\nsmpcgpnWyFZ71J4ObWDXbNxuyF2SPoydCM1N+OffOkGvcUz+HvnZ/Ip0op8N44Sq\nglh0UZu3uVl4TUR0u/Ox9buKzBIiNJ9+BMMwHhtJAoGBAMlDAmEPU7s1vJhaXJRk\n8TOmcWTrJ8DtexbWJKEXaC8ezxUFTw0gn/uGO3mWkOIEi71Df0XF5OI+As+EV6HS\nG6BRy7aZ3jJo+Pg8aA/KG9+BXgq+D3SEc0tViNmayalk2Pkr73euESUgt518X86W\n27u5hDcqrvJ2G6NiICULlCvk\n-----END PRIVATE KEY-----\n",
+  "client_email": "avexia-cloud-storage@avexia-project.iam.gserviceaccount.com",
+  "client_id": "111114013126907999505",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/avexia-cloud-storage%40avexia-project.iam.gserviceaccount.com"
+}
