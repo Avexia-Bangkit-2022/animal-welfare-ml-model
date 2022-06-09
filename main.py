@@ -118,7 +118,7 @@ def Keyword_Spotting_Service():
 
 app = Flask(__name__)
 
-app.config["AUDIO_UPLOADS"] = os.getcwd() + "\\audio"
+app_cwd = os.getcwd()
 
 @app.route("/")
 def index():
@@ -130,7 +130,7 @@ def predict():
 
         if request.files:
             audio = request.files["audio"]
-            audio_path = os.path.join(app.config["AUDIO_UPLOADS"], audio.filename)
+            audio_path = os.path.join(app_cwd, 'audio', audio.filename)
             audio.save(audio_path)
 
             print("Audio saved") 
