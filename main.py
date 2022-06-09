@@ -129,6 +129,8 @@ def predict():
     if request.method == "POST":
 
         if request.files:
+            os.makedirs(os.path.join(app_cwd, 'audio'), exist_ok=True)
+            
             audio = request.files["audio"]
             audio_path = os.path.join(app_cwd, 'audio', audio.filename)
             audio.save(audio_path)
