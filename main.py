@@ -12,7 +12,7 @@ from flask import Flask, render_template, request, jsonify, redirect
 
 import os
 
-SAVED_MODEL_PATH = "test/model.h5"
+SAVED_MODEL_PATH = "model.h5"
 SAMPLES_TO_CONSIDER = 22050
 model = keras.models.load_model(SAVED_MODEL_PATH)
 
@@ -146,4 +146,4 @@ def index():
     return render_template("/public/upload_audio.html")
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, host="0.0.0.0", port=int(os.environ.get("PORT", 8080)))
