@@ -1,8 +1,5 @@
-from distutils.command.upload import upload
 import os
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
-
-# from google.cloud import storage
 
 import tensorflow as tf
 from tensorflow import keras
@@ -12,8 +9,7 @@ import numpy as np
 from flask import Flask, render_template, request, jsonify, redirect
 
 SAVED_MODEL_PATH = "model.h5"
-SAMPLES_TO_CONSIDER = 22050
-model = keras.models.load_model(SAVED_MODEL_PATH)
+# SAMPLES_TO_CONSIDER = 22050
 
 class _Keyword_Spotting_Service:
     """Singleton class for keyword spotting inference with trained models.
@@ -59,16 +55,16 @@ class _Keyword_Spotting_Service:
         :return MFCCs (ndarray): 2-dim array with MFCC data of shape (# time steps, # coefficients)
         """
 
-        # load audio file
-        signal, sample_rate = librosa.load(file_path)
+        # # load audio file
+        # signal, sample_rate = librosa.load(file_path)
 
-        if len(signal) >= SAMPLES_TO_CONSIDER:
-            # ensure consistency of the length of the signal
-            signal = signal[:SAMPLES_TO_CONSIDER]
+        # if len(signal) >= SAMPLES_TO_CONSIDER:
+        #     # ensure consistency of the length of the signal
+        #     signal = signal[:SAMPLES_TO_CONSIDER]
 
-            # extract MFCCs
-            MFCCs = librosa.feature.mfcc(signal, sample_rate, n_mfcc=num_mfcc, n_fft=n_fft,
-                                         hop_length=hop_length)
+        #     # extract MFCCs
+        #     MFCCs = librosa.feature.mfcc(signal, sample_rate, n_mfcc=num_mfcc, n_fft=n_fft,
+        #                                  hop_length=hop_length)
             
         # load file audio dan potong untuk memastikan panjang file audio konsisten
         signal, sample_rate = librosa.load(file_path)
@@ -113,8 +109,6 @@ def Keyword_Spotting_Service():
         _Keyword_Spotting_Service._instance = _Keyword_Spotting_Service()
         _Keyword_Spotting_Service.model = tf.keras.models.load_model(SAVED_MODEL_PATH)
     return _Keyword_Spotting_Service._instance
-
-
 
 app = Flask(__name__)
 

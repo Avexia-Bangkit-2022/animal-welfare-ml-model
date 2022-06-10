@@ -1,5 +1,3 @@
-# import package penting
-
 # untuk model machine learning
 from tensorflow import lite
 import tensorflow as tf
@@ -7,19 +5,12 @@ import tensorflow as tf
 import matplotlib.pyplot as plt
 
 # untuk processing suara
-import sklearn
-import librosa
 import librosa.display
-
-# untuk download dataset dari github
-import zipfile
-import os
 
 # untuk general use
 import pandas as pd
 import numpy as np
 import json
-# from pathlib import Path # untuk buka current working directory
 
 import json
 import numpy as np
@@ -28,9 +19,9 @@ import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
 
 DATA_PATH = "data.json"
-SAVED_MODEL_PATH = "model.h5"
-EPOCHS = 40
-BATCH_SIZE = 32
+SAVED_MODEL_PATH = "../model.h5"
+EPOCHS = 70
+BATCH_SIZE = 8
 PATIENCE = 5
 LEARNING_RATE = 0.0001
 
@@ -110,10 +101,10 @@ def build_model(input_shape, loss="sparse_categorical_crossentropy", learning_ra
     # flatten output and feed into dense layer
     model.add(tf.keras.layers.Flatten())
     model.add(tf.keras.layers.Dense(64, activation='relu'))
-    tf.keras.layers.Dropout(0.3)
+    tf.keras.layers.Dropout(0.1)
 
     # softmax output layer
-    model.add(tf.keras.layers.Dense(10, activation='softmax'))
+    model.add(tf.keras.layers.Dense(3, activation='softmax'))
 
     optimiser = tf.optimizers.Adam(learning_rate=learning_rate)
 

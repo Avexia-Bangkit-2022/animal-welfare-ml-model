@@ -1,5 +1,3 @@
-# import package penting
-
 # untuk model machine learning
 from tensorflow import lite
 import tensorflow as tf
@@ -7,22 +5,19 @@ import tensorflow as tf
 import matplotlib.pyplot as plt
 
 # untuk processing suara
-import sklearn
 import librosa
 import librosa.display
 
 # untuk download dataset dari github
-import zipfile
 import os
 
 # untuk general use
 import pandas as pd
 import numpy as np
 import json
-# from pathlib import Path # untuk buka current working directory
 
 # bikin file metadata
-dataset_path = "./content/dataset"
+dataset_path = "/content/dataset"
 json_path = "data.json"
 
 # dictionary untuk menyimpan hasil mapping, label, MFCC, dan files
@@ -46,7 +41,7 @@ for i, (dirpath, dirnames, filenames) in enumerate(os.walk(dataset_path)):
         # proses semua file audio di subdir dataset (happy, unhappy, greeting)
         for f in filenames:
             file_path = os.path.join(dirpath, f)
-    
+      
             # load file audio dan potong untuk memastikan panjang file audio konsisten
             signal, sample_rate = librosa.load(file_path)
 
@@ -74,7 +69,8 @@ for i, (dirpath, dirnames, filenames) in enumerate(os.walk(dataset_path)):
                 num_mfcc=13
                 n_fft=2048
                 hop_length=512
-                MFCCs = librosa.feature.mfcc(signal, sample_rate, n_mfcc=num_mfcc, n_fft=n_fft, hop_length=hop_length)
+                MFCCs = librosa.feature.mfcc(signal, sample_rate, n_mfcc=num_mfcc, n_fft=n_fft,
+                                                hop_length=hop_length)
 
                 # store data for analysed track
                 data["MFCCs"].append(MFCCs.T.tolist())
@@ -82,6 +78,6 @@ for i, (dirpath, dirnames, filenames) in enumerate(os.walk(dataset_path)):
                 data["files"].append(file_path)
                 print("{}: {}".format(file_path, i-1))
 
-        # save data in json file
-        with open(json_path, "w") as fp:
-            json.dump(data, fp, indent=4)
+    # save data in json file
+    with open(json_path, "w") as fp:
+        json.dump(data, fp, indent=4)
