@@ -1,4 +1,5 @@
 import os
+from unittest import result
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
 import tensorflow as tf
@@ -40,10 +41,12 @@ class _Keyword_Spotting_Service:
         # get the predicted label
         predictions = self.model.predict(MFCCs)
         print(predictions)
+        predictions_string = str("{:.2f}".format(predictions[0][0] * 100)) + "%"
         predicted_index = np.argmax(predictions)
         print(predicted_index)
         predicted_keyword = self._mapping[predicted_index]
-        return predicted_keyword
+        
+        return predicted_keyword, predictions_string
 
 
     def preprocess(self, file_path, num_mfcc=13, n_fft=2048, hop_length=512):
@@ -123,25 +126,39 @@ def predict():
     if request.method == "POST":
 
         if request.files:
-            os.makedirs(os.path.join(app_cwd, 'audio'), exist_ok=True)
-            
-            audio = request.files["audio"]
-            audio_path = os.path.join(app_cwd, 'audio', audio.filename)
-            audio.save(audio_path)
-
-            print("Audio saved") 
-
             try:
+                os.makedirs(os.path.join(app_cwd, 'audio'), exist_ok=True)
+                
+                audio = request.files["audio"]
+                audio_path = os.path.join(app_cwd, 'audio', audio.filename)
+                audio.save(audio_path)
+
+                print("Audio saved") 
+
+
                 kss = Keyword_Spotting_Service()
                 kss1 = Keyword_Spotting_Service()
 
                 assert kss is kss1
-                prediction = kss.predict(audio_path)
+                result, accuracy = kss.predict(audio_path)
             except Exception as e:
                 print(str(e))
-                return jsonify({"error": "Failed to predict"}), 500            
-        
-        return jsonify({"prediction": prediction}), 200
+                return jsonify({
+                    "error": True,
+                    "message": "Failed to predict.",
+                    "accuracy": None
+                }), 500            
+            return jsonify({
+                    "error": False,
+                    "message": result,
+                    "accuracy": accuracy
+                }), 200
+        else:
+            return jsonify({
+                "error": True,
+                "message": "No file found",
+                "accuracy": None
+            }), 400
 
     return render_template("/public/upload_audio.html")
 
