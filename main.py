@@ -7,7 +7,7 @@ from tensorflow import keras
 import librosa
 import numpy as np
 
-from flask import Flask, render_template, request, jsonify, redirect
+from flask import Flask, render_template, request, jsonify, send_file
 
 SAVED_MODEL_PATH = "model.h5"
 # SAMPLES_TO_CONSIDER = 22050
@@ -161,6 +161,11 @@ def predict():
             }), 400
 
     return render_template("/public/upload_audio.html")
+
+@app.route("/avexia-app", methods=["GET"])
+def avexia_app():
+    path = "./app-debug.apk"
+    return send_file(path, as_attachment=True)
 
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0", port=int(os.environ.get("PORT", 8080)))
