@@ -7,7 +7,6 @@ This repository is code that used to train machine learning model and already co
 The machine learning model is made using Tensorflow to build neural network model and use librosa library that can use to preprocess audio data. 
 
 The web API is made by Flask that can run simple web app. The web is already containerized using docker and already deployed at Google Cloud Platform.
-
 ## How to run
 ### Requirements:
 - Python > 3.9
@@ -49,3 +48,13 @@ $ python main.py
 ## Deployment At Google Cloud
 1. To deploy, push any changes to the `main` branch.
 2. The app is hosted at https://welfare-prediction-oxcqjwbebq-et.a.run.app/predict
+
+## Credit
+This project is dedicated to Bangkit 2022 Capstone project, made by team ID C22-PC369, Avexia.
+
+Our team member:
+- (ML) M2002H0085 - Muhammad Fawwaz Abiyyu Anvilen - Institut Teknologi Bandung
+- (ML) M2117G1467 - Andira Raharjo - Institut Teknologi Nasional Bandung
+- (ML) M7435F3015 - Ines Nabilla - Universitas Islam Bandung
+- (MD) A7434G3014 - Yusuf Aryo Wibowo - Universitas Islam As-Syafiiyah
+- (CC) C2002G0087 - Kevin Rizki Mohammad - Institut Teknologi Bandung
