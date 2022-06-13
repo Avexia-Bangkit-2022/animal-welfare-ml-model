@@ -41,7 +41,7 @@ class _Keyword_Spotting_Service:
         # get the predicted label
         predictions = self.model.predict(MFCCs)
         print(predictions)
-        predictions_string = str("{:.2f}".format(predictions[0][0] * 100)) + "%"
+        predictions_string = str("{:.2f}".format(max(predictions[0]) * 100)) + "%"
         predicted_index = np.argmax(predictions)
         print(predicted_index)
         predicted_keyword = self._mapping[predicted_index]
